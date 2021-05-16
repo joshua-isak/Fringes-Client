@@ -9,7 +9,7 @@ if (new_packet_buf != undefined) {
 	network_unread += new_buf_size;
 	buffer_seek(network_buffer, buffer_seek_start, _old_seek);
 	buffer_delete(new_packet_buf);
-	show_debug_message(_old_seek)
+	//show_debug_message(_old_seek)
 }
 
 //show_debug_message(network_unread);
@@ -29,7 +29,7 @@ if (network_unread > 0) {
 		// Read in the command
 		var command_len = buffer_read(network_buffer, buffer_u8);
 		var command = buffer_read(network_buffer, buffer_string);
-		show_debug_message(command);
+		//show_debug_message(command);
 	
 		switch(command) 
 			{
@@ -46,6 +46,11 @@ if (network_unread > 0) {
 			
 			case "SYNC_STATION":
 				connection_handle_stationsync(network_buffer);
+				network_unread -= frame_len;
+				break;
+				
+			case "SEND_ERROR":
+				connection_handle_error(network_buffer);
 				network_unread -= frame_len;
 				break;
 		}

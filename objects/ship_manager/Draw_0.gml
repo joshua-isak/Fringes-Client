@@ -7,6 +7,8 @@ offset_y = 20;
 draw_set_alpha(1);
 draw_set_color(c_white);
 
+draw_set_font(font_cascadia_12);
+
 for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(ships, k)) {
 	var ship = ships[? k];
 	
@@ -20,8 +22,13 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 	offset_x += 5;
 	offset_y += 5;
 	
+	// Draw ship name
 	var fullname = ship.name + " (" + string(ship.id) + ")"; 
+	draw_set_font(font_courierbaltic_15);
 	draw_text(offset_x, offset_y, fullname);
+	
+	// Draw other ship info
+	draw_set_font(font_cascadia_12);
 	offset_y += 25;
 	draw_text(offset_x, offset_y, "Reg: " + ship.registration);
 	offset_y += 16;
@@ -60,14 +67,18 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 	var ship_icon_x = destination.s_x - lengthdir_x(distance_complete, dir);
 	var ship_icon_y = destination.s_y - lengthdir_y(distance_complete, dir);
 	
+	draw_set_alpha(1);
 	draw_set_color(c_white);
 	draw_circle(ship_icon_x, ship_icon_y, 6, true);
-	draw_text(ship_icon_x + 15, ship_icon_y - 25, ship.registration);
 	
 	// Draw a line from the ship's source to its desitnation
-	//draw_set_color(c_green);
 	draw_line(source.s_x, source.s_y, ship_icon_x, ship_icon_y);
 	draw_set_color(c_aqua);
 	draw_line_width(ship_icon_x, ship_icon_y, destination.s_x, destination.s_y, 2);
+	
+	// Draw ship registration along path
+	draw_set_color(c_ltgray);
+	draw_set_font(font_consolas_12);
+	draw_text(ship_icon_x + 15, ship_icon_y - 25, ship.registration);
 	
 }

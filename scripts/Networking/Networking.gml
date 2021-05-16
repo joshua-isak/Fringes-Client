@@ -230,3 +230,15 @@ function connection_send_sendship(ship_id, dest_station_id) {
 	
 	return err;
 }
+
+
+function connection_handle_error(inbuf) {
+	//@description handle the SEND_ERROR server command
+	
+	// Read in the error_message
+	var error_len = buffer_read(inbuf, buffer_u8);
+	var error_message = buffer_read(inbuf, buffer_string);
+	
+	// Print error message in the ingame console
+	console_print("Server: " + error_message);
+}
