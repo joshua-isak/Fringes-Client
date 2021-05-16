@@ -160,7 +160,7 @@ function connection_handle_shipsync(inbuf) {
 	// Read in the ship json data
 	var json_len = buffer_read(inbuf, buffer_u16);
 	var json = buffer_read(inbuf, buffer_string);
-	show_debug_message(json);
+	//show_debug_message(json);
 	
 	// Translate json string to struct
 	var ship_struct = snap_from_json(json);
@@ -182,8 +182,8 @@ function connection_handle_stationsync(inbuf) {
 	// Read in the station json data
 	var json_len = buffer_read(inbuf, buffer_u16);
 	var json = buffer_read(inbuf, buffer_string);
-	console_print(json);
-	show_debug_message(json);
+	//console_print(json);
+	//show_debug_message(json);
 	
 	// Translate json string to struct
 	var station_struct = snap_from_json(json);
