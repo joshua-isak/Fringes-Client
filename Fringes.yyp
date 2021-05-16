@@ -1,9 +1,15 @@
 {
   "resources": [
-    {"id":{"name":"Networking","path":"scripts/Networking/Networking.yy",},"order":2,},
+    {"id":{"name":"ship_manager","path":"objects/ship_manager/ship_manager.yy",},"order":2,},
+    {"id":{"name":"Networking","path":"scripts/Networking/Networking.yy",},"order":1,},
     {"id":{"name":"debug_console","path":"objects/debug_console/debug_console.yy",},"order":0,},
+    {"id":{"name":"draw_dotted_line","path":"scripts/draw_dotted_line/draw_dotted_line.yy",},"order":3,},
     {"id":{"name":"getAttribute","path":"scripts/getAttribute/getAttribute.yy",},"order":0,},
+    {"id":{"name":"unix_timestamp","path":"scripts/unix_timestamp/unix_timestamp.yy",},"order":2,},
+    {"id":{"name":"station_manager","path":"objects/station_manager/station_manager.yy",},"order":3,},
+    {"id":{"name":"snap_to_json","path":"scripts/snap_to_json/snap_to_json.yy",},"order":0,},
     {"id":{"name":"setAttribute","path":"scripts/setAttribute/setAttribute.yy",},"order":1,},
+    {"id":{"name":"snap_from_json","path":"scripts/snap_from_json/snap_from_json.yy",},"order":1,},
     {"id":{"name":"networker","path":"objects/networker/networker.yy",},"order":1,},
     {"id":{"name":"console_commands","path":"scripts/console_commands/console_commands.yy",},"order":2,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
@@ -39,7 +45,8 @@
     {"folderPath":"folders/Animation Curves.yy","order":12,"resourceVersion":"1.0","name":"Animation Curves","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Notes.yy","order":13,"resourceVersion":"1.0","name":"Notes","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Extensions.yy","order":14,"resourceVersion":"1.0","name":"Extensions","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Scripts/console.yy","order":1,"resourceVersion":"1.0","name":"console","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/console.yy","order":0,"resourceVersion":"1.0","name":"console","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Scripts/external.yy","order":3,"resourceVersion":"1.0","name":"external","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

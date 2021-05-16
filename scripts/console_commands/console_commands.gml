@@ -15,6 +15,7 @@ function help() {
 	log += chr(13) + "   disconnect: disconnect from server";
 	log += chr(13) + "   quit: close the game";
 	log += chr(13) + "   clear: clear the console";
+	log += chr(13) + "   send (ship_id, destination_id): request to send a docked ship to a new station";
 	
 }
 
@@ -36,10 +37,20 @@ function disconnect() {
 }
 
 
+function send(argument0) {
+	
+	var _ship_id = argument0[0];
+	var _dest_station_id = argument0[1];
+	
+	connection_send_sendship(_ship_id, _dest_station_id);
+}
+
+
 function clear() {
 	//@description Clears the debug_console log string
 	debug_console.log = ">";
 }
+
 
 function quit() {
 	//@description Exit the game
