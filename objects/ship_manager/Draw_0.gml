@@ -1,6 +1,6 @@
 /// @description Draw Ships
 
-// Draw each ship's info on right side of the screen
+// Draw each of this company's ship info on right side of the screen
 offset_x = 1640;
 offset_y = 20;
 
@@ -9,8 +9,9 @@ draw_set_color(c_white);
 
 draw_set_font(font_cascadia_12);
 
-for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(ships, k)) {
-	var ship = ships[? k];
+for (var k = ds_map_find_first(company_manager.my_ships); !is_undefined(k); k = ds_map_find_next(company_manager.my_ships, k)) {
+	var ship_id = company_manager.my_ships[? k];
+	var ship = ships[? ship_id];
 	
 	// Draw ship info outline rectangle a different color if its currently warping
 	if (ship.travel_state == travel_state.WARP) { draw_set_color(c_aqua); }
@@ -49,6 +50,10 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(ships, k)) {
 	var ship = ships[? k];
 	
+	// Check if this ship belongs to this client's company
+	var our_ship = false;
+	if (ship.company_id == company_manager.company_id) { our_ship = true; }
+	
 	// Skip this ship if it is not warping
 	if (ship.travel_state != travel_state.WARP) { continue; }
 	
@@ -69,16 +74,25 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 	
 	draw_set_alpha(1);
 	draw_set_color(c_white);
+	if (our_ship) { draw_set_color(c_lime); }		// draw ship with green circle if it belongs to this client's company
 	draw_circle(ship_icon_x, ship_icon_y, 6, true);
 	
 	// Draw a line from the ship's source to its desitnation
-	draw_line(source.s_x, source.s_y, ship_icon_x, ship_icon_y);
-	draw_set_color(c_aqua);
-	draw_line_width(ship_icon_x, ship_icon_y, destination.s_x, destination.s_y, 2);
+	if (our_ship or draw_other_labels) {
+		draw_set_color(c_white);
+		draw_line(source.s_x, source.s_y, ship_icon_x, ship_icon_y);
+		draw_set_color(c_aqua);
+		var thickness = 2;
+		if (!our_ship) { draw_set_color(c_white); thickness = 1; }
+		draw_line_width(ship_icon_x, ship_icon_y, destination.s_x, destination.s_y, thickness);
+	}
 	
 	// Draw ship registration along path
-	draw_set_color(c_ltgray);
-	draw_set_font(font_consolas_12);
-	draw_text(ship_icon_x + 15, ship_icon_y - 25, ship.registration);
+	if (our_ship or draw_other_lines) {
+		draw_set_color(c_ltgray);
+		if (our_ship) { draw_set_color(c_lime); }		// draw ship with green registration color if it belongs to this client's company
+		draw_set_font(font_consolas_12);
+		draw_text(ship_icon_x + 15, ship_icon_y - 25, ship.registration);
+	}
 	
 }

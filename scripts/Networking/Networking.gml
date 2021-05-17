@@ -53,6 +53,8 @@ function server_disconnect() {
 	// Clear manager data!
 	ds_map_clear(ship_manager.ships);
 	ds_map_clear(station_manager.stations);
+	ds_map_clear(company_manager.my_ships);
+	ds_map_clear(company_manager.companies);
 	
 }
 
@@ -105,45 +107,6 @@ function connection_send_hello(username, password) {
 }
 
 
-function connection_digest(inbuf, bytes_left) {
-	//@description digest incoming TCP data
-	if (bytes_left == 0) {
-		buffer_delete(inbuf);
-		return;
-	}
-	
-	// Read in the frame length
-	var frame_len = buffer_read(inbuf, buffer_u16);
-	
-	// Read in the command
-	var command_len = buffer_read(inbuf, buffer_u8);
-	var command = buffer_read(inbuf, buffer_string);
-	
-	switch(command) 
-		{
-			
-		case "WELCOME":
-			connection_handle_welcome();
-			bytes_left = buffer_get_size(inbuf) - buffer_tell(inbuf);
-			connection_digest(inbuf, bytes_left);
-			break;
-			
-		case "SYNC_SHIP":
-			connection_handle_shipsync(inbuf);
-			bytes_left = buffer_get_size(inbuf) - buffer_tell(inbuf);
-			connection_digest(inbuf, bytes_left)
-			break;
-			
-		case "SYNC_STATION":
-			connection_handle_stationsync(inbuf);
-			bytes_left = buffer_get_size(inbuf) - buffer_tell(inbuf);
-			connection_digest(inbuf, bytes_left)
-			break;
-	}
-	
-}
-
-
 function connection_handle_welcome() {
 	//@description handle the WELCOME server message
 	console_print("Connected to " + networker.ip);	
@@ -151,7 +114,7 @@ function connection_handle_welcome() {
 
 
 function connection_handle_shipsync(inbuf) {
-	//@description handle the SYNC_STATION server message
+	//@description handle the SYNC_SHIP server message
 	
 	// Read in the sync_type
 	var command_len = buffer_read(inbuf, buffer_u8);
@@ -160,7 +123,6 @@ function connection_handle_shipsync(inbuf) {
 	// Read in the ship json data
 	var json_len = buffer_read(inbuf, buffer_u16);
 	var json = buffer_read(inbuf, buffer_string);
-	//show_debug_message(json);
 	
 	// Translate json string to struct
 	var ship_struct = snap_from_json(json);
@@ -198,6 +160,35 @@ function connection_handle_stationsync(inbuf) {
 	return;
 }
 	
+
+function connection_handle_companysync(inbuf) {
+	//@description handle the SYNC_COMPANY server message
+	
+	// Read in the sync_type
+	var command_len = buffer_read(inbuf, buffer_u8);
+	var command = buffer_read(inbuf, buffer_string);
+	
+	// Read in the company json data
+	var json_len = buffer_read(inbuf, buffer_u16);
+	var json = buffer_read(inbuf, buffer_string);
+	console_print(json);
+	
+	// Translate json string to struct
+	var company_struct = snap_from_json(json);
+	
+	// Add to company manager's data
+	var company_id = company_struct.id;
+	company_manager.companies[? company_id] = company_id;
+	if (company_struct.user == networker.username) {
+		console_print("Our company id is: " + string(company_struct.id));
+		company_manager.company_id = company_struct.id;
+		for (i = 0; i < company_struct.num_ships; i++){
+			ds_map_add(company_manager.my_ships, i, company_struct.ships[i]);
+		}
+	}
+	
+}
+
 
 function connection_send_sendship(ship_id, dest_station_id) {
 	//@description send the SEND_SHIP message to the server

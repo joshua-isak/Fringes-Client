@@ -11,6 +11,12 @@ enum travel_state {
 	DOCKED
 }
 
+
+// Ship map draw settings
+draw_other_labels = true;
+draw_other_lines = true;
+
+
 // Get ship state as string
 function ship_state_string(state_int) {
 	switch (state_int) 
