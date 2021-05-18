@@ -22,7 +22,7 @@ function ship_state_string(state_int) {
 	switch (state_int) 
 	{
 		case travel_state.DEPARTING:
-		return "De[arting";
+		return "Departing";
 		
 		case travel_state.ARRIVING:
 		return "Arriving";

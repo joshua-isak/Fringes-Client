@@ -46,7 +46,9 @@ function server_disconnect() {
 	}
 	
 	// Close the socket if we are connected
+	networker.ip = ""
 	networker.is_connected = false;
+	networker.packet_count = 0;
 	network_destroy(networker.game_socket);
 	console_print("Disconnected from " + networker.ip);
 	

@@ -22,6 +22,11 @@ function help() {
 function connect(argument0) {
 	// @description Connects to a server using server_connect()
 	
+	if (array_length(argument0) != 3) {
+		log += chr(13) + "Error: connect takes 3 arguments";
+		return;
+	}
+	
 	var _ip = string(argument0[0]);
 	var _username = string(argument0[1]);
 	var _password = string(argument0[2]);
@@ -38,6 +43,12 @@ function disconnect() {
 
 
 function send(argument0) {
+	// @description tells server to send a ship (ship_id) to a station (station_id)
+	
+	if (array_length(argument0) != 2) {
+		log += chr(13) + "Error: send takes 2 arguments";	
+		return;
+	}
 	
 	var _ship_id = argument0[0];
 	var _dest_station_id = argument0[1];
