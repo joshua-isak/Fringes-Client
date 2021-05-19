@@ -28,7 +28,7 @@
     "path": "folders/Objects/managers.yy",
   },
   "resourceVersion": "1.0",
-  "name": "station_manager",
+  "name": "star_manager",
   "tags": [],
   "resourceType": "GMObject",
 }

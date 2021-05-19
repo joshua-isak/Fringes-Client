@@ -33,6 +33,16 @@ if (network_unread > 0) {
 				connection_handle_welcome();
 				network_unread -= frame_len;
 				break;
+				
+			case "SYNC_STAR":
+				connection_handle_starsync(network_buffer);
+				network_unread -= frame_len;
+				break;
+				
+			case "SYNC_PLANET":
+				connection_handle_planetsync(network_buffer);
+				network_unread -= frame_len;
+				break;
 			
 			case "SYNC_SHIP":
 				connection_handle_shipsync(network_buffer);

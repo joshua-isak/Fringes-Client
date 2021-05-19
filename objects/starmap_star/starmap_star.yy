@@ -2,8 +2,11 @@
   "spriteId": null,
   "solid": false,
   "visible": true,
-  "spriteMaskId": null,
-  "persistent": true,
+  "spriteMaskId": {
+    "name": "spr_empty",
+    "path": "sprites/spr_empty/spr_empty.yy",
+  },
+  "persistent": false,
   "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
@@ -20,15 +23,16 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "managers",
-    "path": "folders/Objects/managers.yy",
+    "name": "map_objects",
+    "path": "folders/Objects/map_objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "station_manager",
+  "name": "starmap_star",
   "tags": [],
   "resourceType": "GMObject",
 }

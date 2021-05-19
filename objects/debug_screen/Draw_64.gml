@@ -27,4 +27,9 @@ if (draw_debug) {
 	var info = string(networker.ip);
 	draw_text(pos_x, temp_y, "server_ip: " + info);
 	temp_y += 15;
+	
+	// Draw the current scene name
+	var info = string(room);
+	draw_text(pos_x, temp_y, "current_scene: " + info);
+	temp_y += 15;
 }

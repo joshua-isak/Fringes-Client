@@ -57,6 +57,21 @@ function send(argument0) {
 }
 
 
+function rename_ship(argument0) {
+	//@desc tells the server to rename a ship 	
+	
+	if (array_length(argument0) != 2) {
+		log += chr(13) + "Error: send takes 2 arguments";	
+		return;
+	}
+	
+	var _ship_id = argument0[0];
+	var _new_name = argument0[1];
+	
+	connection_send_renameship(_ship_id, _new_name);
+}
+
+
 function clear() {
 	//@description Clears the debug_console log string
 	debug_console.log = ">";

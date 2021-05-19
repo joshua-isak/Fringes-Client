@@ -4,6 +4,24 @@
 // Map of all ships
 ships = ds_map_create();
 
+//////// what's in a ship? ships[? i] = ship
+//
+//	ship.id
+//	ship.company_id
+//	ship.name
+//	ship.registration
+//	ship.type
+//	ship.warps
+//	ship.reliability
+//	ship.last_spaceport
+//	ship.next_spaceport
+//	ship.current_spaceport
+//	ship.departure_time
+//	ship.arrival_time
+//	ship.travel_state
+//
+//////////////////////////////
+
 enum travel_state {
 	DEPARTING,
 	ARRIVING,
