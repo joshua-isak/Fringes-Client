@@ -7,8 +7,8 @@ this_planet = planet_manager.planets[? planet_id];
 
 star_id = this_planet.star_id;
 
-// add this object to star_manager's map of starmap objects
-//star_manager.starmap_stars[? star_id] = id;		//provide a reference to this object's id
+// add this object to planet_manager's map of systemmap objects	
+planet_manager.systemmap_planets[? planet_id] = id;		//provide a reference to this object's id
 
 //offset of center of system map
 offset_x = 1920 / 2;

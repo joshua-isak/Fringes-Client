@@ -1,10 +1,6 @@
 
 // Draw this star on map if we are currently viewing the starmap
 if (room == scene_star_map) {
-	
-	//// Get the struct for this star
-	//var this_star = star_manager.stars[? star_id];
-
 
 	// Draw star on map
 	draw_set_font(font_cascadia_12);
@@ -18,29 +14,23 @@ if (room == scene_star_map) {
 	draw_set_halign(fa_middle);
 	var d_name = "(" + string(this_star.id) + ")";
 	draw_text(s_x, s_y + 11, this_star.name);
-	draw_text(s_x, s_y + 29, d_name);
+	//draw_text(s_x, s_y + 29, d_name);		// don't draw star id
 	draw_set_halign(fa_left);
 	
 }
 
-
-
-
-
-
-//for (var k = ds_map_find_first(stations); !is_undefined(k); k = ds_map_find_next(stations, k)) {
-//	var station = stations[? k];
+// Draw this star in center of screen if we are currently viewing its systemmap
+else if (room == scene_system_map and global.current_system_map_star == star_id) {
 	
-//	var s_x = (station.address.pos_x * grid_size) + offset_x;
-//	var s_y = (station.address.pos_y * grid_size) + offset_y;
+	// Draw a star in the middle of the system 
+	draw_set_font(font_courierbaltic_15);
+	draw_set_color(c_yellow);
+	draw_circle(offset_x, offset_y, 25, false);
 	
-//	draw_circle(station.s_x, station.s_y, 10, true);
-//	draw_set_halign(fa_middle);
-//	var d_name = "(" + string(station.id) + ")";
-//	draw_text(station.s_x, station.s_y + 11, station.address.star_name);
-//	draw_text(station.s_x, station.s_y + 29, d_name);
-//	draw_set_halign(fa_left);
-//}
+	// Draw its name underneath as well
+	draw_set_halign(fa_middle);
+	draw_text(offset_x, offset_y + 34, this_star.name);
+	draw_set_halign(fa_left);
 
-//station_struct.s_x = (station_struct.address.pos_x * station_manager.grid_size) + station_manager.offset_x;
-//station_struct.s_y = (station_struct.address.pos_y * station_manager.grid_size) + station_manager.offset_y;
+}
+

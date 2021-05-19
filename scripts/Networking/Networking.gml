@@ -57,6 +57,7 @@ function server_disconnect() {
 	ds_map_clear(station_manager.stations);
 	ds_map_clear(company_manager.my_ships);
 	ds_map_clear(company_manager.companies);
+	//TODO ADD MORE!!!
 	
 }
 
@@ -128,7 +129,7 @@ function connection_handle_starsync(inbuf) {
 	
 	// Translate json string to struct
 	var star_struct = snap_from_json(json);
-	show_debug_message(json)
+	show_debug_message(json);
 	
 	// Add to star_manager's data
 	var star_id = star_struct.id;
@@ -153,7 +154,7 @@ function connection_handle_planetsync(inbuf) {
 	
 	// Translate json string to struct
 	var planet_struct = snap_from_json(json);
-	show_debug_message(json)
+	show_debug_message(json);
 	
 	// Add to planet_manager's data
 	var planet_id = planet_struct.id;
@@ -196,15 +197,13 @@ function connection_handle_stationsync(inbuf) {
 	// Read in the station json data
 	var json_len = buffer_read(inbuf, buffer_u16);
 	var json = buffer_read(inbuf, buffer_string);
+	show_debug_message(json);
 	
 	// Translate json string to struct
 	var station_struct = snap_from_json(json);
 	
 	// Add to station_manager's data
 	var station_id = station_struct.id;
-	// this shoudln't really be here.....
-	//station_struct.s_x = (station_struct.address.pos_x * station_manager.grid_size) + station_manager.offset_x;
-	//station_struct.s_y = (station_struct.address.pos_y * station_manager.grid_size) + station_manager.offset_y;
 	station_manager.stations[? station_id] = station_struct;
 	
 	return;

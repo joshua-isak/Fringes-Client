@@ -6,7 +6,7 @@
     "name": "spr_empty",
     "path": "sprites/spr_empty/spr_empty.yy",
   },
-  "persistent": false,
+  "persistent": true,
   "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
