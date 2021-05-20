@@ -156,13 +156,24 @@ function connection_handle_planetsync(inbuf) {
 	var planet_struct = snap_from_json(json);
 	show_debug_message(json);
 	
-	// Add to planet_manager's data
 	var planet_id = planet_struct.id;
-	planet_manager.planets[? planet_id] = planet_struct;
 	
-	// Create a new object for the system
-	global.new_systemmap_planet_id = planet_id;	// workaround to pass argument into create event
-	instance_create_layer(0, 0, "Instances", systemmap_planet);
+	switch(command) 
+		{
+		case "INITIAL":
+		// Add to planet_manager's data
+		planet_manager.planets[? planet_id] = planet_struct;
+		// Create a new object for the system
+		global.new_systemmap_planet_id = planet_id;	// workaround to pass argument into create event
+		instance_create_layer(0, 0, "Instances", systemmap_planet);
+		break;
+		
+		case "ORBIT_UPDATE":
+		planet_manager.planets[? planet_id].orb_degree = planet_struct.orb_degree;
+		var planet_obj = planet_manager.systemmap_planets[? planet_id].id;
+		variable_instance_set(planet_obj, update_orbit, planet_struct.orb_degree);
+		break;
+		}
 }
 
 

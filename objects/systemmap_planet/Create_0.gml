@@ -17,6 +17,9 @@ offset_y = 1080 / 2;
 // pixel distance between system grid
 grid_size = 150;
 
+// Set true to recalculate planet's x and y coordinates
+update_orbit = false;
+
 // Do some trig to find this objects x and y coordinates
 var tempx = this_planet.orb_radius * cos(degtorad(this_planet.orb_degree));
 var tempy =	this_planet.orb_radius * sin(degtorad(this_planet.orb_degree));
