@@ -4,7 +4,7 @@
 
 // Offset to draw this text from;
 var t_off_x = 10;
-var t_off_y = 600;
+var t_off_y = 250;
 
 draw_set_alpha(1);
 draw_set_color(c_white);

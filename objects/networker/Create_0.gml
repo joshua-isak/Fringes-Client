@@ -16,7 +16,7 @@ packet_count = 0;
 packets_read = 0;
 
 network_unread = 0;			// bytes left to read from network_buffer
-network_buffer = buffer_create(64000, buffer_wrap, 1);
+network_buffer = buffer_create(64000, buffer_grow, 1);
 max_network_unread = 0;		// largest the network buffer has been filled with data
 
 global.version = "0.2";

@@ -10,12 +10,13 @@ star_id = this_planet.star_id;
 // add this object to planet_manager's map of systemmap objects	
 planet_manager.systemmap_planets[? planet_id] = id;		//provide a reference to this object's id
 
+
 //offset of center of system map
 offset_x = 1920 / 2;
 offset_y = 1080 / 2;
 
 // pixel distance between system grid
-grid_size = 150;
+grid_size = 150;//150;
 
 // Set true to recalculate planet's x and y coordinates
 update_orbit = false;

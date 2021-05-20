@@ -171,7 +171,8 @@ function connection_handle_planetsync(inbuf) {
 		case "ORBIT_UPDATE":
 		planet_manager.planets[? planet_id].orb_degree = planet_struct.orb_degree;
 		var planet_obj = planet_manager.systemmap_planets[? planet_id].id;
-		variable_instance_set(planet_obj, update_orbit, planet_struct.orb_degree);
+		variable_instance_set(planet_obj, "this_planet.orb_degree", planet_struct.orb_degree);
+		variable_instance_set(planet_obj, "update_orbit", true);
 		break;
 		}
 }
