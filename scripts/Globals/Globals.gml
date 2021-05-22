@@ -3,6 +3,9 @@
 // Used to pass an argument to the starmap_star create event
 global.new_starmap_star_id = 0;
 
+// Used to pass an argument to the ship_infolet create event
+global.new_infolet_ship_id = 0;
+
 // Used to pass an argument to the systemmap_planet create event
 global.new_systemmap_planet_id = 0;
 

@@ -13,7 +13,7 @@ game_socket = noone;
 // queue of new packets to process
 new_packets = ds_queue_create();
 packet_count = 0;
-packets_read = 0;
+bytes_received = 0;
 
 network_unread = 0;			// bytes left to read from network_buffer
 network_buffer = buffer_create(64000, buffer_grow, 1);

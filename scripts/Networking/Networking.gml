@@ -129,7 +129,6 @@ function connection_handle_starsync(inbuf) {
 	
 	// Translate json string to struct
 	var star_struct = snap_from_json(json);
-	show_debug_message(json);
 	
 	// Add to star_manager's data
 	var star_id = star_struct.id;
@@ -138,6 +137,8 @@ function connection_handle_starsync(inbuf) {
 	// Create a new object for the starmap
 	global.new_starmap_star_id = star_id;	// workaround to pass argument into create event
 	instance_create_layer(0, 0, "Instances", starmap_star);
+	
+	delete(star_struct);
 }
 
 
@@ -154,7 +155,6 @@ function connection_handle_planetsync(inbuf) {
 	
 	// Translate json string to struct
 	var planet_struct = snap_from_json(json);
-	show_debug_message(json);
 	
 	var planet_id = planet_struct.id;
 	
@@ -175,6 +175,8 @@ function connection_handle_planetsync(inbuf) {
 		variable_instance_set(planet_obj, "update_orbit", true);
 		break;
 		}
+		
+	delete(planet_struct);
 }
 
 
@@ -195,6 +197,11 @@ function connection_handle_shipsync(inbuf) {
 	// Add to ship_manager's data
 	var ship_id = ship_struct.id;
 	ship_manager.ships[? ship_id] = ship_struct;
+	
+	//TODO// Add code to spawn a new infolet if this ship is of type initial
+	// and belongs to our company!
+	
+	delete(ship_struct);
 }
 	
 	
@@ -209,7 +216,6 @@ function connection_handle_stationsync(inbuf) {
 	// Read in the station json data
 	var json_len = buffer_read(inbuf, buffer_u16);
 	var json = buffer_read(inbuf, buffer_string);
-	show_debug_message(json);
 	
 	// Translate json string to struct
 	var station_struct = snap_from_json(json);
@@ -217,6 +223,8 @@ function connection_handle_stationsync(inbuf) {
 	// Add to station_manager's data
 	var station_id = station_struct.id;
 	station_manager.stations[? station_id] = station_struct;
+	
+	delete(station_struct);
 	
 	return;
 }
@@ -243,10 +251,21 @@ function connection_handle_companysync(inbuf) {
 	if (company_struct.user == networker.username) {
 		console_print("Our company id is: " + string(company_struct.id));
 		company_manager.company_id = company_struct.id;
+		
+		var off_x = _gui_parent.ship_infolet_x;
+		var off_y = _gui_parent.ship_infolet_y;
+		
 		for (i = 0; i < company_struct.num_ships; i++){
-			ds_map_add(company_manager.my_ships, i, company_struct.ships[i]);
+			var ship_id = company_struct.ships[i]
+			ds_map_add(company_manager.my_ships, i, ship_id);
+			global.new_infolet_ship_id = ship_id;
+			var new_infolet = instance_create_depth(off_x, off_y, 0, ship_infolet)
+			new_infolet.offset_y = off_y;
+			off_y += 60;
 		}
 	}
+	
+	delete(company_struct);
 	
 }
 

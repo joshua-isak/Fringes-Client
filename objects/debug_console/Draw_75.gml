@@ -23,8 +23,8 @@ if(self.has_focus){
     draw_text(10, screen_h/3 + 1, "$ " + keyboard_string);	 
 }
 ////TODO REMOVE
-else {
-	draw_set_alpha(1);
-	draw_set_color(c_white);
-	draw_text(100,100, "Press ~ to open console");
-}
+//else {
+//	draw_set_alpha(1);
+//	draw_set_color(c_white);
+//	draw_text(100,100, "Press ~ to open console");
+//}

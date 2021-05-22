@@ -30,6 +30,8 @@ if (n_id == game_socket) {
 			//network_unread += data_size;
 			console_print("Got packet! Size: " + string(data_size));
 			//connection_digest(t_buffer, data_size);
+			buffer_delete(t_buffer);
+			ds_map_destroy(async_load);
             break;
         }
     }

@@ -9,41 +9,41 @@ draw_set_color(c_white);
 
 draw_set_font(font_cascadia_12);
 
-for (var k = ds_map_find_first(company_manager.my_ships); !is_undefined(k); k = ds_map_find_next(company_manager.my_ships, k)) {
-	var ship_id = company_manager.my_ships[? k];
-	var ship = ships[? ship_id];
+//for (var k = ds_map_find_first(company_manager.my_ships); !is_undefined(k); k = ds_map_find_next(company_manager.my_ships, k)) {
+//	var ship_id = company_manager.my_ships[? k];
+//	var ship = ships[? ship_id];
 	
-	// Draw ship info outline rectangle a different color if its currently warping
-	if (ship.travel_state == travel_state.WARP) { draw_set_color(c_aqua); }
+//	// Draw ship info outline rectangle a different color if its currently warping
+//	if (ship.travel_state == travel_state.WARP) { draw_set_color(c_aqua); }
 	
-	draw_rectangle(offset_x, offset_y, offset_x + 240, offset_y + 100, true);
+//	draw_rectangle(offset_x, offset_y, offset_x + 240, offset_y + 100, true);
 	
-	draw_set_color(c_white);
+//	draw_set_color(c_white);
 	
-	offset_x += 5;
-	offset_y += 5;
+//	offset_x += 5;
+//	offset_y += 5;
 	
-	// Draw ship name
-	var fullname = ship.name + " (" + string(ship.id) + ")"; 
-	draw_set_font(font_courierbaltic_15);
-	draw_text(offset_x, offset_y, fullname);
+//	// Draw ship name
+//	var fullname = ship.name + " (" + string(ship.id) + ")"; 
+//	draw_set_font(font_courierbaltic_15);
+//	draw_text(offset_x, offset_y, fullname);
 	
-	// Draw other ship info
-	draw_set_font(font_cascadia_12);
-	offset_y += 25;
-	draw_text(offset_x, offset_y, "Reg: " + ship.registration);
-	offset_y += 16;
-	var destination = station_manager.stations[? ship.next_spaceport].name;
-	draw_text(offset_x, offset_y, "Dest: " + destination);
-	offset_y += 16;
-	var time_left = max( 0, ship.arrival_time - unix_timestamp());
-	draw_text(offset_x, offset_y, "ETA: " + string(time_left) + " seconds");
-	offset_y += 16;
-	draw_text(offset_x, offset_y, "State: " + ship_state_string(ship.travel_state));
+//	// Draw other ship info
+//	draw_set_font(font_cascadia_12);
+//	offset_y += 25;
+//	draw_text(offset_x, offset_y, "Reg: " + ship.registration);
+//	offset_y += 16;
+//	var destination = station_manager.stations[? ship.next_spaceport].name;
+//	draw_text(offset_x, offset_y, "Dest: " + destination);
+//	offset_y += 16;
+//	var time_left = max( 0, ship.arrival_time - unix_timestamp());
+//	draw_text(offset_x, offset_y, "ETA: " + string(time_left) + " seconds");
+//	offset_y += 16;
+//	draw_text(offset_x, offset_y, "State: " + ship_state_string(ship.travel_state));
 	
-	offset_x -= 5;
-	offset_y += 32;
-}
+//	offset_x -= 5;
+//	offset_y += 32;
+//}
 
 
 // Draw each ship's current warp path

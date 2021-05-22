@@ -7,6 +7,7 @@ if (new_packet_buf != undefined) {
 	var _old_seek = buffer_tell(network_buffer);
 	buffer_copy(new_packet_buf, 0, new_buf_size, network_buffer, _old_seek + network_unread);
 	network_unread += new_buf_size;
+	bytes_received += new_buf_size;
 	buffer_seek(network_buffer, buffer_seek_start, _old_seek);
 	buffer_delete(new_packet_buf);
 	if (network_unread > max_network_unread) { max_network_unread = network_unread; }

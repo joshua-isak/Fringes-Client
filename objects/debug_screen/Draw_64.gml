@@ -18,9 +18,14 @@ if (draw_debug) {
 	draw_text(pos_x, temp_y, "max_network_unread: " + info);
 	temp_y += 15;
 	
-	// Draw number of packets recieved
+	// Draw number of packets recieved (calls to async networking really...)
 	var info = string(networker.packet_count);
-	draw_text(pos_x, temp_y, "packets_received: " + info);
+	draw_text(pos_x, temp_y, "network_calls: " + info);
+	temp_y += 15;
+	
+	// Draw number of bytes recieved
+	var info = string(networker.bytes_received);
+	draw_text(pos_x, temp_y, "bytes_received: " + info);
 	temp_y += 15;
 	
 	// Draw current server ip
@@ -31,5 +36,15 @@ if (draw_debug) {
 	// Draw the current scene name
 	var info = string(room);
 	draw_text(pos_x, temp_y, "current_scene: " + info);
+	temp_y += 15;
+	
+	// Draw the current scene name
+	var info = string(mouse_gui_x);
+	draw_text(pos_x, temp_y, "mouse_gui_x: " + info);
+	temp_y += 15;
+	
+	// Draw the current scene name
+	var info = string(mouse_gui_y);
+	draw_text(pos_x, temp_y, "mouse_gui_y: " + info);
 	temp_y += 15;
 }
