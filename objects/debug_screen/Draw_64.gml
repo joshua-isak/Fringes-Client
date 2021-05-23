@@ -38,13 +38,18 @@ if (draw_debug) {
 	draw_text(pos_x, temp_y, "current_scene: " + info);
 	temp_y += 15;
 	
-	// Draw the current scene name
+	// Draw the current mouse gui x coord
 	var info = string(mouse_gui_x);
 	draw_text(pos_x, temp_y, "mouse_gui_x: " + info);
 	temp_y += 15;
 	
-	// Draw the current scene name
+	// Draw the current mosue gui y coord
 	var info = string(mouse_gui_y);
 	draw_text(pos_x, temp_y, "mouse_gui_y: " + info);
+	temp_y += 15;
+	
+	// Draw whether next planet click will send ship
+	var info = string(ship_infobox.send_ship);
+	draw_text(pos_x, temp_y, "send_ship: " + info);
 	temp_y += 15;
 }

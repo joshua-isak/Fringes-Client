@@ -50,6 +50,9 @@ draw_set_font(font_cascadia_12);
 for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(ships, k)) {
 	var ship = ships[? k];
 	
+	// Don't draw ship warp paths if currently selecting a ship's destination
+	//if (ship_infobox.send_ship) { exit; }
+	
 	// Check if this ship belongs to this client's company
 	var our_ship = false;
 	if (ship.company_id == company_manager.company_id) { our_ship = true; }

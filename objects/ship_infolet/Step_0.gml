@@ -15,6 +15,15 @@ delete(ship_info);
 
 if (point_in_rectangle(mouse_gui_x, mouse_gui_y, offset_x, offset_y, offset_x + 240, offset_y + 50)) {
 	hover = true;	
+	
+	// Check if the box is clicked
+	if (mouse_check_button(mb_left)) {
+		ship_infobox.show_infobox = true;
+		ship_infobox.ship_id = ship_id;
+		ship_infobox.send_ship = false;
+	}
+	
+	
 } else {
 	hover = false;
 }

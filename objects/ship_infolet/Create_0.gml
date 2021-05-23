@@ -1,6 +1,6 @@
 
-offset_x = 1660; // +240
-offset_y = 20;   // +50
+offset_x = display_get_gui_width() - 260 //1660; // +240
+offset_y = display_get_gui_height()// - 20;   // +50
 
 // Whether mouse is hovering over the infolet
 hover = false;

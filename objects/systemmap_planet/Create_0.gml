@@ -14,6 +14,12 @@ planet_manager.systemmap_planets[? planet_id] = id;		//provide a reference to th
 offset_x = 1920 / 2;
 offset_y = 1080 / 2;
 
+// If planet is being hovered over by mouse
+hover = false;
+
+// If this planet is the current location for a new ship's destination selection
+current_location = false;
+
 // pixel distance between system grid
 grid_size = 150;//150;
 
