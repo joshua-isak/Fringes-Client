@@ -49,7 +49,7 @@ if (global.current_system_map_star == star_id) {
 		hover = true;
 		
 		// If mouse clicked while this object is being hovered over...
-		if (mouse_check_button(mb_left)) {
+		if (mouse_check_button(mb_left) and ship_infobox.send_ship) {
 			
 			// Tell the server to send ship to this planet
 			connection_send_sendship(ship_infobox.ship_id, this_planet.sp_id);

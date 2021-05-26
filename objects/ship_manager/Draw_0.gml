@@ -97,7 +97,7 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 		draw_circle(ship_icon_x, ship_icon_y, 6, true);
 		
 		// Draw a line from the ship's source to its desitnation
-		if (our_ship or draw_other_labels) {
+		if (our_ship or draw_other_lines) {
 			draw_set_color(c_white);
 			draw_line(s_x, s_y, ship_icon_x, ship_icon_y);
 			draw_set_color(c_aqua);
@@ -107,7 +107,7 @@ for (var k = ds_map_find_first(ships); !is_undefined(k); k = ds_map_find_next(sh
 		}
 	
 		// Draw ship registration along path
-		if (our_ship or draw_other_lines) {
+		if (our_ship or draw_other_labels) {
 			draw_set_color(c_ltgray);
 			if (our_ship) { draw_set_color(c_lime); }		// draw ship with green registration color if it belongs to this client's company
 			draw_set_font(font_consolas_12);
