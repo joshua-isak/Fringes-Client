@@ -1,7 +1,7 @@
 {
   "parent": {
     "name": "Scribble",
-    "path": "folders/Scribble.yy",
+    "path": "folders/Extensions/Scribble.yy",
   },
   "resourceVersion": "1.1",
   "name": "MSDF_Guide",

@@ -21,6 +21,9 @@ if (point_in_rectangle(mouse_gui_x, mouse_gui_y, offset_x, offset_y, offset_x + 
 		ship_infobox.show_infobox = true;
 		ship_infobox.ship_id = ship_id;
 		ship_infobox.send_ship = false;
+		
+		// Close station infobox if open
+		station_infobox.show_infobox = false;
 	}
 	
 	

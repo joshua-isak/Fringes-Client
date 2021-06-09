@@ -16,7 +16,7 @@ offset_y = display_get_gui_height() - height - edge_padding;
 
 // Used to detect the station information to draw, and whether to show this object
 last_planet_hovered = 0;
-last_planet_hover = false;
+//last_planet_hover = false;
 
 // Variables needed to display station information
 station_id = 0;
@@ -26,6 +26,7 @@ station_name = "";
 star_name = "";
 planet_name = "";
 station_level = 0;
+cargo = [];					// array containing station's cargo manifest
 next_manifest_update = 0;
 top_product = 0;
 num_ships_present = 0;

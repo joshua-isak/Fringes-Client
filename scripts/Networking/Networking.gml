@@ -290,6 +290,7 @@ function connection_handle_stationsync(inbuf) {
 			
 		case "CARGO":
 			station_manager.stations[? station_id].cargo = station_struct.cargo;
+			station_manager.stations[? station_id].cu_time = station_struct.cu_time;
 			break;
 		}
 	

@@ -1,21 +1,17 @@
 ///////////////////// EVERY PLANET OBJECT SHOULD NOT BE CHECKING THIS //////////////////
-if (keyboard_check_pressed(vk_f8)) {
-	grid_size -= 10;	
-}
 
-if (keyboard_check_pressed(vk_f7)) {
-	grid_size += 10;	
-}
-
-
+// Mouse wheel in and out to change grid size and this planet map size accordingly
 if (mouse_wheel_down()) {
 	grid_size -= 5;	
+	// Don't let the grid size get too small
+	if (grid_size < 10) { grid_size = 10; }
 }
 
 if (mouse_wheel_up()) {
-	grid_size += 5;	
+	grid_size += 5;
+	// Don't let the grid size get too large
+	if (grid_size > 250) { grid_size = 250; }
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -43,20 +39,28 @@ if (global.current_system_map_star == star_id) {
 	
 	// Check if this planet is being hovered over
 	if (position_meeting(mouse_x, mouse_y, id)) {
-		// Ignore this code if ship_infobox is currently open
+		
+		// Ignore this code if ship_infobox or station_infobox is currently open
 		if (ship_infobox.show_infobox) { exit; }
+		if (station_infobox.show_infobox) { exit; }
 		
 		station_infolet.last_planet_hovered = id;	// tell the station infolet which planet was last hovered over
 		
 		hover = true;
 		
+		// Check if the planet is clicked casually with nothing going on
+		if (mouse_check_button_pressed(mb_left) and ship_infobox.send_ship == false) {
+			station_infobox.show_infobox = true;
+			station_infobox.station_id = this_planet.sp_id;
+		}
 		// If mouse clicked while this object is being hovered over...and we need to send a ship
 		if (mouse_check_button(mb_left) and ship_infobox.send_ship) {
 			
 			// Tell the server to send ship to this planet
 			connection_send_sendship(ship_infobox.ship_id, this_planet.sp_id);
 			ship_infobox.send_ship = false;
-		}
+		} 
+		
 	}
 	
 	// Show that this planet is the current location if currently selecting ship destination

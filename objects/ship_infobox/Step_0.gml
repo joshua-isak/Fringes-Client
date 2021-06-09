@@ -7,8 +7,8 @@ if (show_infobox) {
 	ship_info = ship_manager.ships[? ship_id];
 	
 	
-	// Close the infobox if "C" is pressed
-	if (keyboard_check(ord("C"))) {
+	// Close the infobox if "C" is pressed or escape
+	if (keyboard_check(ord("C")) or keyboard_check(vk_escape)) {
 		show_infobox = false;	
 	}
 	

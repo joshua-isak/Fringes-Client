@@ -34,8 +34,8 @@ draw_text(off_x, off_y, ship_registration);
 
 // Draw ship ETA
 if (ship_eta != 0) {
-	off_x += 180
-	var info = "[" + string(ship_eta) + "]";
+	off_x += 170
+	var info = "[" + seconds_to_clock(ship_eta) + "]";
 	draw_text(off_x, off_y, info);
 }
 
@@ -101,7 +101,7 @@ if (hover) {
 		
 		info_y += 17;
 		draw_set_color(c_white);
-		draw_text(info_x, info_y, "ETA: " + string(ship_eta) + " seconds");
+		draw_text(info_x, info_y, "ETA: " + seconds_to_clock(ship_eta) );
 	}
 	
 }

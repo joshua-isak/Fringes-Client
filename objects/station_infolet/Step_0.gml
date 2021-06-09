@@ -9,8 +9,11 @@ if (last_planet_hovered != 0 and last_planet_hovered.hover == true) {
 
 // Update station/planet variables
 var planet_id = last_planet_hovered.planet_id;
-var station_id = planet_manager.planets[? planet_id].sp_id;
+station_id = planet_manager.planets[? planet_id].sp_id;
 var star_id = planet_manager.planets[? planet_id].star_id;
+
+star_name = star_manager.stars[? star_id].name;
+planet_name = planet_manager.planets[? planet_id].name;
 
 // Skip the rest of the event if the planet has no station
 if (station_id == 0) { 
@@ -19,11 +22,9 @@ if (station_id == 0) {
 }
 
 var station_struct = station_manager.stations[? station_id];
-
 station_name = station_struct.name;
-star_name = star_manager.stars[? star_id].name;
-planet_name = planet_manager.planets[? planet_id].name;
 station_level = station_struct.station_level;
+cargo = station_struct.cargo;
 next_manifest_update = 0;		//--TODO--// UPDATE TO INCLUDE THIS
 top_product = 0;				//--TODO--// UPDATE TO INCLUDE THIS
 num_ships_present = 0;			//--TODO--// UPDATE TO INCLUDE THIS
