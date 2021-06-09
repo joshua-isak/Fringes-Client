@@ -30,6 +30,7 @@ if(show) {
 	
 	// Draw station cargo bulletin size info
 	off_y += 17;
-	cargo_len = string(array_length(cargo));
-	scribble("[font_cascadia_12]Bulletin: " + cargo_len + "/" + cargo_len + " [[0:00]").draw(off_x, off_y);
+	var cargo_len = string(array_length(cargo));
+	var cargo_tot = string(station_level*10) + " ";
+	scribble("[font_cascadia_12]Bulletin: " + cargo_len + "/" + cargo_tot + next_bulletin_update).draw(off_x, off_y);
 }

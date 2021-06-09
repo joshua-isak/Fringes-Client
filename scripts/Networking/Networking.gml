@@ -416,6 +416,40 @@ function connection_send_renameship(ship_id, new_name) {
 }
 
 
+function connection_send_cargo_sp_to_ship(cargo_id, ship_id) {
+	//@description add cargo_id to ship_id
+	
+	var command = "CARGO_SP_TO_SHIP";
+	var command_len = string_length(command) + 1;	// +1 to include string null terminated char
+	
+	var frame_len = 1 + command_len + 4 + 2 			// +1+4+2 to include one uint32 and one uint16
+														// and an extra +1 for command len itself
+	
+	// Buffer to contain outgoing network data
+	var outbuf = buffer_create(frame_len + 2, buffer_fixed, 1);
+	buffer_seek(outbuf, buffer_seek_start, 0);
+	
+	// Write frame size (buffersize - 2)
+	buffer_write(outbuf, buffer_u16, frame_len);
+	
+	// Write command
+	buffer_write(outbuf, buffer_u8, command_len);
+	buffer_write(outbuf, buffer_string, command);
+	
+	// Write cargo_id
+	buffer_write(outbuf, buffer_u32, cargo_id);
+	
+	// Write ship_id
+	buffer_write(outbuf, buffer_u16, ship_id);
+	
+	// Send the data to the server
+	var err = network_send_raw(networker.game_socket, outbuf, buffer_tell(outbuf));
+	buffer_delete(outbuf);	// delete buffer to avoid memory leaks
+	
+	return err;
+}
+
+
 function connection_handle_error(inbuf) {
 	//@description handle the SEND_ERROR server command
 	

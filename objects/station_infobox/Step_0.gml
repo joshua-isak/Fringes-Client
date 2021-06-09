@@ -7,8 +7,8 @@ if (show_infobox) {
 	station_info = station_manager.stations[? station_id];
 	
 	
-	// Close the infobox if "C" is pressed or escape
-	if (keyboard_check(ord("C")) or keyboard_check(vk_escape)) {
+	// Close the infobox if escape is pressed
+	if (keyboard_check(vk_escape)) {
 		show_infobox = false;	
 	}
 	

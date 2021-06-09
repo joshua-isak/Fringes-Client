@@ -27,7 +27,7 @@ star_name = "";
 planet_name = "";
 station_level = 0;
 cargo = [];					// array containing station's cargo manifest
-next_manifest_update = 0;
+next_bulletin_update = "";
 top_product = 0;
 num_ships_present = 0;
 

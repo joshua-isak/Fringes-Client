@@ -25,7 +25,7 @@ var station_struct = station_manager.stations[? station_id];
 station_name = station_struct.name;
 station_level = station_struct.station_level;
 cargo = station_struct.cargo;
-next_manifest_update = 0;		//--TODO--// UPDATE TO INCLUDE THIS
+next_bulletin_update = "[[" + seconds_to_clock(station_struct.cu_time - unix_timestamp()) + "]";
 top_product = 0;				//--TODO--// UPDATE TO INCLUDE THIS
 num_ships_present = 0;			//--TODO--// UPDATE TO INCLUDE THIS
 

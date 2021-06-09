@@ -57,11 +57,26 @@ function send(argument0) {
 }
 
 
+function addcargo(argument0) {
+	// @description tells server to add a cargo_id to a ship_id
+	
+	if (array_length(argument0) != 2) {
+		log += chr(13) + "Error: addcargo takes 2 arguments";	
+		return;
+	}
+	
+	var _cargo_id = argument0[0];
+	var _ship_id = argument0[1];
+	
+	connection_send_cargo_sp_to_ship(_cargo_id, _ship_id);
+}
+
+
 function rename_ship(argument0) {
 	//@desc tells the server to rename a ship 	
 	
 	if (array_length(argument0) != 2) {
-		log += chr(13) + "Error: send takes 2 arguments";	
+		log += chr(13) + "Error: rename_ship takes 2 arguments";	
 		return;
 	}
 	

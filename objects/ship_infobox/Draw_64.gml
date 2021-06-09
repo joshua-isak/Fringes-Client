@@ -33,14 +33,46 @@ if (show_infobox) {
 	
 	// Draw ship cargo manifest
 	off_y += 60;
-	draw_set_font(font_courierbaltic_15);
-	draw_text(off_x, off_y, "Cargo Manifest:   0/4");
+	var cargo_len = string(array_length(ship_info.cargo));
+	var cargo_tot = string(ship_info.max_cargo);
+	scribble("[font_courierbaltic_15]Cargo Manifest: " + cargo_len + "/" + cargo_tot).draw(off_x, off_y);
+	off_y += 5;
 	
-	// draw manifest box
-	off_y += 25;
-	draw_rectangle(off_x, off_y, off_x + 350, off_y + 310, true);
+	// Loop through all of this ship's cargo and draw information
+	for (var i = 0; i < array_length(ship_info.cargo); i++) {
+		
+		// Make sure this cargo exists in our map of all cargo
+		if ( ds_map_exists(cargo_manager.cargos, ship_info.cargo[i]) ) {
+				var output = "[font_consolas_12]";	// string to draw
+				off_y += 19;
+				var this_cargo = cargo_manager.cargos[? ship_info.cargo[i]];
+				
+				// Add cargo id to output
+				output += "[[" + string(this_cargo.id) + "] ";
+				
+				// Add name to output
+				output += cargo_manager.products[? this_cargo.info_id].name;
+				
+				// Add destination to output
+				var dest_station_address = station_manager.stations[? this_cargo.dest_id].address;
+				output += " ->[c_yellow] " + star_manager.stars[? dest_station_address.star_id].name;
+				output += "[c_orange] " + planet_manager.planets[? dest_station_address.planet_id].name;
+				
+				// Draw cargo information
+				scribble(output).draw(off_x, off_y);
+				
+				// Draw Cargo value
+				var output_value = "[font_consolas_12][c_lime] CR " + string(this_cargo.value);
+				scribble(output_value).draw(off_x + 285, off_y);
+				
+				// Delete helper structs
+				delete(dest_station_address);
+				delete(this_cargo);
+		}
+	}
 	
 	
+
 	// Draw send button
 	draw_set_color(c_aqua);
 	if (send_button_hover) { draw_set_color(c_red); }
