@@ -5,14 +5,7 @@ offset_y = display_get_gui_height()// - 20;   // +50
 // Whether mouse is hovering over the infolet
 hover = false;
 
-// Maybe have this only be declared once?
-//enum travel_state {
-//	DEPARTING,
-//	ARRIVING,
-//	WARP,
-//	DOCKED
-//}
-
+// Used to pass in argument when infolet is created
 ship_id = global.new_infolet_ship_id;
 
 // Ship variables to display, these varialble needs to be updated every step

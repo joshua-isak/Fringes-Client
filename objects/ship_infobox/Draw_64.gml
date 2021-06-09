@@ -1,5 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
 
 var off_x = offset_x;
 var off_y = offset_y;
@@ -40,7 +38,7 @@ if (show_infobox) {
 	
 	// draw manifest box
 	off_y += 25;
-	draw_rectangle(off_x, off_y, off_x + 350, off_y + 312, true);
+	draw_rectangle(off_x, off_y, off_x + 350, off_y + 310, true);
 	
 	
 	// Draw send button

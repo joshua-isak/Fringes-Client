@@ -46,9 +46,11 @@ if (global.current_system_map_star == star_id) {
 		// Ignore this code if ship_infobox is currently open
 		if (ship_infobox.show_infobox) { exit; }
 		
+		station_infolet.last_planet_hovered = id;	// tell the station infolet which planet was last hovered over
+		
 		hover = true;
 		
-		// If mouse clicked while this object is being hovered over...
+		// If mouse clicked while this object is being hovered over...and we need to send a ship
 		if (mouse_check_button(mb_left) and ship_infobox.send_ship) {
 			
 			// Tell the server to send ship to this planet
@@ -57,7 +59,7 @@ if (global.current_system_map_star == star_id) {
 		}
 	}
 	
-	// Show that this planet is the current location if selecting ship destination
+	// Show that this planet is the current location if currently selecting ship destination
 	if (ship_infobox.send_ship) {
 		var ship_loc = ship_manager.ships[? ship_infobox.ship_id].current_spaceport;
 		var loc_addr = station_manager.stations[? ship_loc].address.planet_id;

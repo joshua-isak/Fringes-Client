@@ -19,5 +19,13 @@ if ((global.current_system_map_star == star_id) and (room == scene_system_map)) 
 		// Draw planet name under planet
 		draw_set_font(font_cascadia_12);
 		draw_text(x - 4, y + 13, string(this_planet.name));
-		
+
+
+
+	// Draw expanded planet/station infobox on hover
+	if (hover) {
+		var info_x;
+		var info_y;
+	}
+
 }
