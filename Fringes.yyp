@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"ship_manager","path":"objects/ship_manager/ship_manager.yy",},"order":0,},
+    {"id":{"name":"cargo_manager","path":"objects/cargo_manager/cargo_manager.yy",},"order":5,},
     {"id":{"name":"font_cascadia_12","path":"fonts/font_cascadia_12/font_cascadia_12.yy",},"order":1,},
     {"id":{"name":"Networking","path":"scripts/Networking/Networking.yy",},"order":1,},
     {"id":{"name":"Globals","path":"scripts/Globals/Globals.yy",},"order":4,},

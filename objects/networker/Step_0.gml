@@ -13,7 +13,7 @@ if (new_packet_buf != undefined) {
 	if (network_unread > max_network_unread) { max_network_unread = network_unread; }
 }
 
-
+//--TODO--// Update this to keep processing packets until it cannot anymore for this cycle!!!
 if (network_unread > 0) {
 	// Read in the frame length
 	var frame_len = buffer_read(network_buffer, buffer_u16);
@@ -57,6 +57,11 @@ if (network_unread > 0) {
 				
 			case "SYNC_COMPANY":
 				connection_handle_companysync(network_buffer);
+				network_unread -= frame_len;
+				break;
+				
+			case "SYNC_CARGO":
+				connection_handle_cargosync(network_buffer);
 				network_unread -= frame_len;
 				break;
 				
