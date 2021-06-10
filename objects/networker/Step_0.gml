@@ -13,14 +13,17 @@ if (new_packet_buf != undefined) {
 	if (network_unread > max_network_unread) { max_network_unread = network_unread; }
 }
 
-//--TODO--// Update this to keep processing packets until it cannot anymore for this cycle!!!
-if (network_unread > 0) {
+
+// Process packets until we cannot anymore
+while (network_unread > 0) {
 	// Read in the frame length
 	var frame_len = buffer_read(network_buffer, buffer_u16);
 
 	if (frame_len >= network_unread) {
 		buffer_seek(network_buffer, buffer_seek_relative, -2);
+		break;
 	}
+	
 	else {
 		network_unread -= 2;
 		// Read in the command
@@ -72,6 +75,7 @@ if (network_unread > 0) {
 		}
 	}
 }
+
 
 // Reset the seek of the network buffer if there aren't any new frames to digest this step
 if (network_unread == 0) {

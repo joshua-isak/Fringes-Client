@@ -50,6 +50,7 @@ if (global.current_system_map_star == star_id) {
 		
 		// Check if the planet is clicked casually with nothing going on
 		if (mouse_check_button_pressed(mb_left) and ship_infobox.send_ship == false) {
+			if (this_planet.sp_id == 0) { exit; }	// ignore if this planet has no station
 			station_infobox.show_infobox = true;
 			station_infobox.station_id = this_planet.sp_id;
 		}
