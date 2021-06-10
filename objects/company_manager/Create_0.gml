@@ -8,3 +8,6 @@ my_ships = ds_map_create();
 
 // Map of all companies
 companies = ds_map_create();
+
+// Info struct for this company
+company_struct = {}

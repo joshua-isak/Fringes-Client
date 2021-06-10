@@ -317,10 +317,12 @@ function connection_handle_companysync(inbuf) {
 	
 	// Add to company manager's data
 	var company_id = company_struct.id;
-	company_manager.companies[? company_id] = company_id;
+	company_manager.companies[? company_id] = company_struct;
 	if (company_struct.user == networker.username) {
 		console_print("Our company id is: " + string(company_struct.id));
+		
 		company_manager.company_id = company_struct.id;
+		company_manager.company_struct = company_struct;
 		
 		var off_x = _gui_parent.ship_infolet_x;
 		var off_y = _gui_parent.ship_infolet_y;

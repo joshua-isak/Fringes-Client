@@ -34,6 +34,14 @@ if (show_infobox) {
 				off_y += 19;
 				var this_cargo = cargo_manager.cargos[? station_info.cargo[i]];
 				
+				// Draw box outline and highlight if cargo is being hovered over or has been clicked
+				if (cargo_clicked = this_cargo.id) {
+					draw_set_color(c_maroon); draw_rectangle(off_x, off_y, off_x + 450, off_y + 17, false);
+				}
+				if (cargo_hover = this_cargo.id) {
+					draw_set_color(c_maroon); draw_rectangle(off_x, off_y, off_x + 450, off_y + 17, false);
+				}
+				
 				// Add cargo id to output
 				output += "[[" + string(this_cargo.id) + "] ";
 				
@@ -50,12 +58,37 @@ if (show_infobox) {
 				
 				// Draw Cargo value
 				var output_value = "[font_consolas_12][c_lime] CR " + string(this_cargo.value);
-				scribble(output_value).draw(off_x + 285, off_y);
+				scribble(output_value).draw(off_x + 385, off_y);
 				
-				// Delete helper structs
-				delete(dest_station_address);
-				delete(this_cargo);
 		}
 			
+	}
+	
+	// Draw directory of our ships present at this station
+	off_x = offset_x + 508;
+	off_y = offset_y + 65;
+	scribble("[font_courierbaltic_15]Ships currently moored:").draw(off_x, off_y);
+	off_y += 5;
+	// Loop through our company's ships
+	var company_ships = company_manager.company_struct.ships;
+	for (var k = 0; k < array_length(company_ships); k++) {
+		var ship = ship_manager.ships[? company_ships[k]];
+		
+		// Check if this ship is at this station and draw it if so
+		if (ship.current_spaceport == station_id and ship.travel_state == travel_state.DOCKED) {
+			var output = " [font_consolas_12][c_lime]";		// string to draw
+			off_y += 19;
+			output += ship.registration + "[c_white] " + ship.name	+ " ";		// append ship name and reg to output
+			output += "[[" + string(array_length(ship.cargo)) + "/" + string(ship.max_cargo) + "]";	// cargo fullness
+			
+			// Draw box outline and highlight if ship is being hovered over
+			if (ship_hover = ship.id) {
+				draw_set_color(c_maroon); draw_rectangle(off_x, off_y, off_x + 280, off_y + 17, false);
+			}
+			
+			// Draw ship registration + name + fullness
+			scribble(output).draw(off_x, off_y);
+			
+		}
 	}
 }

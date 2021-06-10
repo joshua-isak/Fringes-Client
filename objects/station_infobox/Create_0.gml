@@ -28,3 +28,9 @@ cargo = [];					// array containing station's cargo manifest
 next_manifest_update = 0;
 top_product = 0;
 num_ships_present = 0;
+
+// Id of cargo information currently being hovered over
+cargo_hover = 0;
+cargo_clicked = 0;
+
+ship_hover = 0;
